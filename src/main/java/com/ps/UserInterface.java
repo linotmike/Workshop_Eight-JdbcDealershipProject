@@ -37,7 +37,7 @@ public class UserInterface {
                     searchByPriceRange();
                     break;
                 case 2:
-                    //searchByMakeModel();
+                    searchByMakeModel();
                     break;
                 case 3:
                     //searchByYear();
@@ -79,9 +79,24 @@ public class UserInterface {
     private static void searchByPriceRange(){
         System.out.println("Please enter a minimum price");
         float minPrice = scanner.nextFloat();
+
         System.out.println("Please enter a maximum price");
         float maxPrice = scanner.nextFloat();
+
         List<Vehicle> results = dealership.getVehiclesByPrice(minPrice,maxPrice);
+        displayResults(results);
+//        scanner.nextLine();
+
+    }
+
+    private static void searchByMakeModel(){
+
+        scanner.nextLine();
+        System.out.println("Please enter the make of the car");
+        String make = scanner.nextLine().toUpperCase();
+        System.out.println("Please enter the model of the car");
+        String model = scanner.nextLine().toUpperCase();
+        List<Vehicle>results = dealership.getVehiclesByMakeModel(make,model);
         displayResults(results);
     }
 
