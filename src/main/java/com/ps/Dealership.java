@@ -10,11 +10,11 @@ public class Dealership {
     private String phone;
     private ArrayList<Vehicle> inventory;
 
-    public Dealership(){
+    public Dealership() {
         inventory = new ArrayList<>();
     }
 
-    public Dealership(String name, String address, String phone){
+    public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -44,42 +44,53 @@ public class Dealership {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public List<Vehicle> getVehiclesByPrice(float minPrice, float maxPrice){
-        System.out.println("getVehiclesByPrice");
-        return new ArrayList<>();
+
+    public List<Vehicle> getVehiclesByPrice(float minPrice, float maxPrice) {
+        List<Vehicle> results = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= minPrice && vehicle.getPrice() <= maxPrice) {
+                results.add(vehicle);
+            }
+        }
+        return results;
     }
-    public List<Vehicle> getVehiclesByMakeModel(String make, String model){
+
+    public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
         System.out.println("getVehicleByMakeModel");
         return new ArrayList<>();
     }
-    public List<Vehicle> getVehiclesByYear(int minYear, int maxYear ){
+
+    public List<Vehicle> getVehiclesByYear(int minYear, int maxYear) {
         System.out.println("getVehiclesByYear");
         return new ArrayList<>();
     }
-    public List<Vehicle> getVehiclesByColor(String color){
+
+    public List<Vehicle> getVehiclesByColor(String color) {
         System.out.println("getVehiclesByColor");
         return new ArrayList<>();
     }
-    public List<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage){
+
+    public List<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
         System.out.println("getVehiclesByMileage");
         return new ArrayList<>();
     }
-    public List<Vehicle> getVehiclesByType(Vehicle.VehicleType vehicleType){
+
+    public List<Vehicle> getVehiclesByType(Vehicle.VehicleType vehicleType) {
         System.out.println("getVehiclesByType");
         return new ArrayList<>();
     }
 
-    public List<Vehicle> getAllVehicles(){
+    public List<Vehicle> getAllVehicles() {
         return this.inventory;
     }
 
-    public void addVehicle(Vehicle vehicle){
+    public void addVehicle(Vehicle vehicle) {
         this.inventory.add(vehicle);
     }
-    public void removeVehicle(Vehicle vehicle){
+
+    public void removeVehicle(Vehicle vehicle) {
         this.inventory.remove(vehicle);
     }
-1
 
 
 }

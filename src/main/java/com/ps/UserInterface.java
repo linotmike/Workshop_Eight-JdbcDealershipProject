@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -33,7 +34,7 @@ public class UserInterface {
 
             switch(menuCommand){
                 case 1:
-                    //searchByPriceRange();
+                    searchByPriceRange();
                     break;
                 case 2:
                     //searchByMakeModel();
@@ -73,5 +74,24 @@ public class UserInterface {
         }while(menuCommand !=99);
 
 
+    }
+
+    private static void searchByPriceRange(){
+        System.out.println("Please enter a minimum price");
+        float minPrice = scanner.nextFloat();
+        System.out.println("Please enter a maximum price");
+        float maxPrice = scanner.nextFloat();
+        List<Vehicle> results = dealership.getVehiclesByPrice(minPrice,maxPrice);
+        displayResults(results);
+    }
+
+
+    private static void displayResults(List<Vehicle> results){
+        if(results.isEmpty()){
+            System.out.println("There is no vehicle");
+        }
+         for (Vehicle vehicle: results){
+             System.out.println(results);
+         }
     }
 }
