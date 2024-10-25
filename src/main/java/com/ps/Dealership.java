@@ -69,15 +69,14 @@ public class Dealership {
     }
 
     public List<Vehicle> getAllVehicles(){
-        System.out.println("getAllVehicles");
-        return new ArrayList<>();
+        return this.inventory;
     }
 
     public void addVehicle(Vehicle vehicle){
-        System.out.println("addVehicle");
+        this.inventory.add(vehicle);
     }
     public void removeVehicle(Vehicle vehicle){
-        System.out.println("removeVehicle");
+        this.inventory.remove(vehicle);
     }
 
 
