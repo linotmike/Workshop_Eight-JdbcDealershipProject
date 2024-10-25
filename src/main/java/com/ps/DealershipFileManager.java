@@ -13,14 +13,23 @@ public class DealershipFileManager {
         Dealership dealership = null;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("inventory.csv"));
+//            System.out.println("File found and opened");
             String firstLine = bufferedReader.readLine();
+//            if(firstLine != null){
+
+           System.out.println(firstLine);
             String[] dealershipDetails = firstLine.split("\\|");
             String name = dealershipDetails[0];
             String address = dealershipDetails[1];
             String phone = dealershipDetails[2];
             dealership = new Dealership(name, address, phone);
+//            } else {
+//            System.out.println("File is empty");
+//            return null;
+//            }
             String input;
             while ((input = bufferedReader.readLine()) != null) {
+                System.out.println(input);
                 String[] vehicleDetails = input.split("\\|");
                 int vin = Integer.parseInt(vehicleDetails[0]);
                 int year = Integer.parseInt(vehicleDetails[1]);
@@ -33,18 +42,24 @@ public class DealershipFileManager {
                 Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
 
-
             }
             bufferedReader.close();
 
+            return dealership;
 
         } catch (IOException e) {
+            System.out.println("Error eading the file");
+            e.printStackTrace();
+        } catch(Exception e){
+            System.out.println("error processing the file");
             e.printStackTrace();
         }
-        return dealership;
+        return null;
 
 
     }
+public static void saveDealership(){
 
+}
 
 }

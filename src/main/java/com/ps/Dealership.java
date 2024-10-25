@@ -64,7 +64,7 @@ public class Dealership {
         System.out.println("getVehiclesByMileage");
         return new ArrayList<>();
     }
-    public List<Vehicle> getVehiclesByType(String vehicleType){
+    public List<Vehicle> getVehiclesByType(Vehicle.VehicleType vehicleType){
         System.out.println("getVehiclesByType");
         return new ArrayList<>();
     }
@@ -79,7 +79,7 @@ public class Dealership {
     public void removeVehicle(Vehicle vehicle){
         this.inventory.remove(vehicle);
     }
-
+1
 
 
 }
