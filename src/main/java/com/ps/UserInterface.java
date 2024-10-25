@@ -40,7 +40,7 @@ public class UserInterface {
                     searchByMakeModel();
                     break;
                 case 3:
-                    //searchByYear();
+                    searchByYear();
                     break;
                 case 4:
                     //searchByColor();
@@ -97,6 +97,15 @@ public class UserInterface {
         System.out.println("Please enter the model of the car");
         String model = scanner.nextLine().toUpperCase();
         List<Vehicle>results = dealership.getVehiclesByMakeModel(make,model);
+        displayResults(results);
+    }
+
+    private static void searchByYear(){
+        System.out.println("Please enter the minimum year the car was made");
+        int minYear = scanner.nextInt();
+        System.out.println("Please enter the maximum year the car was made");
+        int maxYear = scanner.nextInt();
+        List<Vehicle>results = dealership.getVehiclesByYear(minYear,maxYear);
         displayResults(results);
     }
 
