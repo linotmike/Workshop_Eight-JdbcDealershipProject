@@ -1,6 +1,7 @@
 package com.ps;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Dealership {
@@ -41,6 +42,42 @@ public class Dealership {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public List<Vehicle> getVehiclesByPrice(float minPrice, float maxPrice){
+        System.out.println("getVehiclesByPrice");
+        return new ArrayList<>();
+    }
+    public List<Vehicle> getVehiclesByMakeModel(String make, String model){
+        System.out.println("getVehicleByMakeModel");
+        return new ArrayList<>();
+    }
+    public List<Vehicle> getVehiclesByYear(int minYear, int maxYear ){
+        System.out.println("getVehiclesByYear");
+        return new ArrayList<>();
+    }
+    public List<Vehicle> getVehiclesByColor(String color){
+        System.out.println("getVehiclesByColor");
+        return new ArrayList<>();
+    }
+    public List<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage){
+        System.out.println("getVehiclesByMileage");
+        return new ArrayList<>();
+    }
+    public List<Vehicle> getVehiclesByType(String vehicleType){
+        System.out.println("getVehiclesByType");
+        return new ArrayList<>();
+    }
+
+    public List<Vehicle> getAllVehicles(){
+        System.out.println("getAllVehicles");
+        return new ArrayList<>();
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        System.out.println("addVehicle");
+    }
+    public void removeVehicle(Vehicle vehicle){
+        System.out.println("removeVehicle");
     }
 
 
