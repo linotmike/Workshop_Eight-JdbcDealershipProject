@@ -55,7 +55,7 @@ public class UserInterface {
                     //allVehicles();
                     break;
                 case 8:
-                    //addAVehicle();
+                    addVehicle();
                     break;
                 case 9:
                     //removeAVehicle();
@@ -144,6 +144,34 @@ public class UserInterface {
         }
         List<Vehicle> results = dealership.getVehiclesByType(type);
         displayResults(results);
+    }
+
+    private static void addVehicle(){
+        System.out.println("Enter the vin");
+        int vin = scanner.nextInt();
+        System.out.println("Enter the year");
+        int year = scanner.nextInt();
+        System.out.println("Enter the make");
+        scanner.nextLine();
+        String make = scanner.nextLine();
+        System.out.println("Enter the model");
+        String model = scanner.nextLine();
+        System.out.println("Enter the vehicle type(car,truck,suv,convertible)");
+        String type = scanner.nextLine();
+        System.out.println("Enter the color");
+        String color = scanner.nextLine();
+        System.out.println("Enter the odometer");
+        int odometer = scanner.nextInt();
+        System.out.println("Enter the price");
+        float price = scanner.nextFloat();
+        try{
+            Vehicle.VehicleType vehicleType = Vehicle.VehicleType.valueOf(type);
+            Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
+            System.out.println("Vehicle added " + vehicle);
+            dealership.addVehicle(vehicle);
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+        }
     }
 
 
