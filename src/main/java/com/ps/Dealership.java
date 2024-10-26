@@ -107,6 +107,9 @@ public class Dealership {
         }
         return results;
     }
+//    public List<Vehicle> getVehicleByVin(int vin){
+//        List<Vehicle>
+//    }
 
     public List<Vehicle> getAllVehicles() {
         return this.inventory;

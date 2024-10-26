@@ -26,9 +26,10 @@ public class UserInterface {
             System.out.println("4) Find vehicles By Color");
             System.out.println("5) Find vehicles By Mileage range");
             System.out.println("6) Find vehicles By vehicle Type");
-            System.out.println("7) All vehicles");
-            System.out.println("8) Add a vehicles");
-            System.out.println("9) Remove a vehicles");
+//            System.out.println("7) Find vehicles by vin");
+            System.out.println("8) All vehicles");
+            System.out.println("9) Add a vehicles");
+            System.out.println("10) Remove a vehicles");
             System.out.println("99)Quit");
             menuCommand = scanner.nextInt();
 
@@ -52,13 +53,16 @@ public class UserInterface {
                     searchByVehicleType();
                     break;
                 case 7:
-                    //allVehicles();
+                    //searchByVin();
                     break;
                 case 8:
-                    addVehicle();
+                    //allVehicles();
                     break;
                 case 9:
-                    //removeAVehicle();
+                    addVehicle();
+                    break;
+                case 10:
+                    removeVehicle();
                     break;
                 case 99:
                     System.out.println("you choose to Quit");
@@ -145,8 +149,15 @@ public class UserInterface {
         List<Vehicle> results = dealership.getVehiclesByType(type);
         displayResults(results);
     }
+//    private static void searchByVin(){
+//        System.out.println("Enter the vin");
+//        int vin = scanner.nextInt();
+//        List<Vehicle> result = dealership.getVehicleByVin(vin);
+//        displayResults(result);
+//
+//    }
 
-    private static void addVehicle(){
+    private static void addVehicle() {
         System.out.println("Enter the vin");
         int vin = scanner.nextInt();
         System.out.println("Enter the year");
@@ -164,13 +175,33 @@ public class UserInterface {
         int odometer = scanner.nextInt();
         System.out.println("Enter the price");
         float price = scanner.nextFloat();
-        try{
+        try {
             Vehicle.VehicleType vehicleType = Vehicle.VehicleType.valueOf(type);
-            Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
+            Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
             System.out.println("Vehicle added " + vehicle);
             dealership.addVehicle(vehicle);
-        }catch(IllegalArgumentException e){
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+            System.out.println("Invalid Vehicle type");
+        }
+    }
+
+    private static void removeVehicle(){
+        System.out.println("Enter the vin of the vehicle to remove");
+        int vin = scanner.nextInt();
+        Vehicle removeVehicle = null;
+
+        for (Vehicle vehicle: dealership.getAllVehicles()){
+            if(vehicle.getVin() == vin){
+                removeVehicle = vehicle;
+                break;
+            }
+        }
+        if(removeVehicle != null){
+            dealership.removeVehicle(removeVehicle);
+            System.out.println("vehicle removed: " + removeVehicle);
+        } else {
+            System.out.println("No vehicle found to remove");
         }
     }
 
