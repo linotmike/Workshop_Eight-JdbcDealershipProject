@@ -127,22 +127,23 @@ public class UserInterface {
     }
 
     private static void searchByVehicleType() {
-
-        System.out.println("Please enter the type of the vehicle");
         scanner.nextLine();
-        String vehicle = scanner.nextLine().toLowerCase();
-        try {
-            Vehicle.VehicleType type = Vehicle.VehicleType.valueOf(vehicle);
-            List<Vehicle> results = dealership.getVehiclesByType(type);
-            displayResults(results);
-
-
-        } catch (IllegalArgumentException e) {
+        boolean validInput = false;
+        Vehicle.VehicleType type = null;
+        while (!validInput) {
+            System.out.println("Please enter the type of the vehicle");
+            String vehicle = scanner.nextLine().toLowerCase();
+            try {
+                type = Vehicle.VehicleType.valueOf(vehicle);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
 //            e.printStackTrace();
-            System.out.println("Invalid vehicle type. Please enter a valid vehicle Type");
+                System.out.println("Invalid vehicle type. Please enter a valid vehicle Type");
 //            searchByVehicleType();
+            }
         }
-
+        List<Vehicle> results = dealership.getVehiclesByType(type);
+        displayResults(results);
     }
 
 
