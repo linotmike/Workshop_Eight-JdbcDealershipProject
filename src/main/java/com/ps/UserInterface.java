@@ -46,7 +46,7 @@ public class UserInterface {
                     searchByColor();
                     break;
                 case 5:
-                    //SearchByMileageRange();
+                    searchByMileageRange();
                     break;
                 case 6:
                    //SearchByVehicleType();
@@ -116,6 +116,14 @@ public class UserInterface {
         List<Vehicle> results = dealership.getVehiclesByColor(color);
         displayResults(results);
 
+    }
+    private static void searchByMileageRange(){
+        System.out.println("Please enter the minimum mileage");
+        int minMileage = scanner.nextInt();
+        System.out.println("Please enter the maximum mileage");
+        int maxMileage = scanner.nextInt();
+        List<Vehicle> results = dealership.getVehiclesByMileage(minMileage, maxMileage);
+        displayResults(results);
     }
 
 
