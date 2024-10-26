@@ -56,7 +56,7 @@ public class UserInterface {
                     searchByVin();
                     break;
                 case 8:
-                    //allVehicles();
+                    allVehicles();
                     break;
                 case 9:
                     addVehicle();
@@ -149,6 +149,7 @@ public class UserInterface {
         List<Vehicle> results = dealership.getVehiclesByType(type);
         displayResults(results);
     }
+
     private static void searchByVin(){
         System.out.println("Enter the vin");
         int vin = scanner.nextInt();
@@ -202,6 +203,12 @@ public class UserInterface {
             System.out.println("vehicle removed: " + removeVehicle);
         } else {
             System.out.println("No vehicle found to remove");
+        }
+    }
+
+    private static void allVehicles(){
+        for(Vehicle vehicle: dealership.getAllVehicles()){
+            System.out.println(vehicle);
         }
     }
 
