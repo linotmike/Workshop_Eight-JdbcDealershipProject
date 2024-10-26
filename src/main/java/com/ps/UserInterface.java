@@ -43,10 +43,10 @@ public class UserInterface {
                     searchByYear();
                     break;
                 case 4:
-                    //searchByColor();
+                    searchByColor();
                     break;
                 case 5:
-                    //SearchByMilageRange();
+                    //SearchByMileageRange();
                     break;
                 case 6:
                    //SearchByVehicleType();
@@ -108,6 +108,16 @@ public class UserInterface {
         List<Vehicle>results = dealership.getVehiclesByYear(minYear,maxYear);
         displayResults(results);
     }
+
+    private static void searchByColor(){
+        System.out.println("Please enter the color of the car");
+        scanner.nextLine();
+        String color = scanner.nextLine();
+        List<Vehicle> results = dealership.getVehiclesByColor(color);
+        displayResults(results);
+
+    }
+
 
 
     private static void displayResults(List<Vehicle> results){
