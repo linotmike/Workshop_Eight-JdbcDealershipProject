@@ -17,7 +17,7 @@ public class UserInterface {
         init();
 
         int menuCommand;
-        do{
+        do {
             System.out.println("Welcome to the car Dealership");
             System.out.println("Please select an option");
             System.out.println("1) Find vehicles By Price range");
@@ -32,7 +32,7 @@ public class UserInterface {
             System.out.println("99)Quit");
             menuCommand = scanner.nextInt();
 
-            switch(menuCommand){
+            switch (menuCommand) {
                 case 1:
                     searchByPriceRange();
                     break;
@@ -49,10 +49,10 @@ public class UserInterface {
                     searchByMileageRange();
                     break;
                 case 6:
-                   //SearchByVehicleType();
+                    searchByVehicleType();
                     break;
                 case 7:
-                   //allVehicles();
+                    //allVehicles();
                     break;
                 case 8:
                     //addAVehicle();
@@ -70,46 +70,45 @@ public class UserInterface {
             }
 
 
-
-        }while(menuCommand !=99);
+        } while (menuCommand != 99);
 
 
     }
 
-    private static void searchByPriceRange(){
+    private static void searchByPriceRange() {
         System.out.println("Please enter a minimum price");
         float minPrice = scanner.nextFloat();
 
         System.out.println("Please enter a maximum price");
         float maxPrice = scanner.nextFloat();
 
-        List<Vehicle> results = dealership.getVehiclesByPrice(minPrice,maxPrice);
+        List<Vehicle> results = dealership.getVehiclesByPrice(minPrice, maxPrice);
         displayResults(results);
 //        scanner.nextLine();
 
     }
 
-    private static void searchByMakeModel(){
+    private static void searchByMakeModel() {
 
         scanner.nextLine();
         System.out.println("Please enter the make of the car");
         String make = scanner.nextLine().toUpperCase();
         System.out.println("Please enter the model of the car");
         String model = scanner.nextLine().toUpperCase();
-        List<Vehicle>results = dealership.getVehiclesByMakeModel(make,model);
+        List<Vehicle> results = dealership.getVehiclesByMakeModel(make, model);
         displayResults(results);
     }
 
-    private static void searchByYear(){
+    private static void searchByYear() {
         System.out.println("Please enter the minimum year the car was made");
         int minYear = scanner.nextInt();
         System.out.println("Please enter the maximum year the car was made");
         int maxYear = scanner.nextInt();
-        List<Vehicle>results = dealership.getVehiclesByYear(minYear,maxYear);
+        List<Vehicle> results = dealership.getVehiclesByYear(minYear, maxYear);
         displayResults(results);
     }
 
-    private static void searchByColor(){
+    private static void searchByColor() {
         System.out.println("Please enter the color of the car");
         scanner.nextLine();
         String color = scanner.nextLine();
@@ -117,7 +116,8 @@ public class UserInterface {
         displayResults(results);
 
     }
-    private static void searchByMileageRange(){
+
+    private static void searchByMileageRange() {
         System.out.println("Please enter the minimum mileage");
         int minMileage = scanner.nextInt();
         System.out.println("Please enter the maximum mileage");
@@ -126,14 +126,32 @@ public class UserInterface {
         displayResults(results);
     }
 
+    private static void searchByVehicleType() {
+
+        System.out.println("Please enter the type of the vehicle");
+        scanner.nextLine();
+        String vehicle = scanner.nextLine().toLowerCase();
+        try {
+            Vehicle.VehicleType type = Vehicle.VehicleType.valueOf(vehicle);
+            List<Vehicle> results = dealership.getVehiclesByType(type);
+            displayResults(results);
 
 
-    private static void displayResults(List<Vehicle> results){
-        if(results.isEmpty()){
+        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+            System.out.println("Invalid vehicle type. Please enter a valid vehicle Type");
+//            searchByVehicleType();
+        }
+
+    }
+
+
+    private static void displayResults(List<Vehicle> results) {
+        if (results.isEmpty()) {
             System.out.println("There is no vehicle");
         }
-         for (Vehicle vehicle: results){
-             System.out.println(results);
-         }
+        for (Vehicle vehicle : results) {
+            System.out.println(results);
+        }
     }
 }
