@@ -19,18 +19,7 @@ public class UserInterface {
         init();
         int menuCommand;
         do {
-            System.out.println("Please select an option");
-            System.out.println("1) Find vehicles By Price range");
-            System.out.println("2) Find vehicles By Make/model");
-            System.out.println("3) Find vehicles By year");
-            System.out.println("4) Find vehicles By Color");
-            System.out.println("5) Find vehicles By Mileage range");
-            System.out.println("6) Find vehicles By vehicle Type");
-            System.out.println("7) Find vehicles by vin");
-            System.out.println("8) All vehicles");
-            System.out.println("9) Add a vehicles");
-            System.out.println("10) Remove a vehicles");
-            System.out.println("99)Quit");
+            displayMenu();
             menuCommand = scanner.nextInt();
 
             switch (menuCommand) {
@@ -76,7 +65,20 @@ public class UserInterface {
 
         } while (menuCommand != 99);
 
-
+    }
+    private static void displayMenu(){
+        System.out.println("Please select an option");
+        System.out.println("1) Find vehicles By Price range");
+        System.out.println("2) Find vehicles By Make/model");
+        System.out.println("3) Find vehicles By year");
+        System.out.println("4) Find vehicles By Color");
+        System.out.println("5) Find vehicles By Mileage range");
+        System.out.println("6) Find vehicles By vehicle Type");
+        System.out.println("7) Find vehicles by vin");
+        System.out.println("8) All vehicles");
+        System.out.println("9) Add a vehicles");
+        System.out.println("10) Remove a vehicles");
+        System.out.println("99)Quit");
     }
 
 
@@ -181,7 +183,7 @@ public class UserInterface {
         try {
             Vehicle.VehicleType vehicleType = Vehicle.VehicleType.valueOf(type);
             Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-            System.out.println("Vehicle added " + vehicle + vehicleType.getDescription());
+            System.out.println("Vehicle added " + vehicle + vehicleType.getAddDescription());
             dealership.addVehicle(vehicle);
             saveDealership(dealership);
         } catch (IllegalArgumentException e) {
@@ -213,7 +215,7 @@ public class UserInterface {
     private static void allVehicles() {
 
         for (Vehicle vehicle : dealership.getAllVehicles()) {
-            System.out.println(vehicle);
+            System.out.println(vehicle+ vehicle.getVehicleType().getViewDescription());
         }
     }
 
@@ -223,7 +225,14 @@ public class UserInterface {
             System.out.println("There is no vehicle");
         }
         for (Vehicle vehicle : results) {
-            System.out.println(results);
+            System.out.println(results + vehicle.getVehicleType().getViewDescription());
         }
     }
+
+//    public static void displayVehicleType(List<Vehicle> vehicles){
+//        for(Vehicle vehicle: vehicles){
+//            System.out.println(vehicle + vehicle.getVehicleType().getDescription());
+//        }
+//
+//    }
 }

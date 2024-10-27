@@ -88,8 +88,16 @@ public class Vehicle {
     public enum VehicleType{
         car{
                 @Override
-            public String getDescription (){
+            public String getAddDescription (){
                     return "\nYou added a CAR\n" +
+                            "    ______\n" +
+                            " __//__||_\\__\n" +
+                            "|_          _|\n" +
+                            "  (o)----(o)";
+
+            }
+            public String getViewDescription (){
+                    return "\nThis is a CAR\n" +
                             "    ______\n" +
                             " __//__||_\\__\n" +
                             "|_          _|\n" +
@@ -99,7 +107,7 @@ public class Vehicle {
 
         },
         truck{
-            public String getDescription (){
+            public String getAddDescription (){
                 return "\nYou added a TRUCk\n" +
                         "       _________________\n" +
                         "   ____|               |\\\n" +
@@ -107,11 +115,26 @@ public class Vehicle {
                         " [|____|-(o)-------(o)-|\n";
 
             }
+            public String getViewDescription (){
+                return "\nThis is a TRUCk\n" +
+                        "       _________________\n" +
+                        "   ____|               |\\\n" +
+                        "  |    |_______________| \\\n" +
+                        " [|____|-(o)-------(o)-|\n";
+            }
 
         },
         suv{
-            public String getDescription (){
+            public String getAddDescription (){
                 return "\nYou added an SUV\n" +
+                        "     ______\n" +
+                        " __//____|___\\__\n" +
+                        "|_            _|\n" +
+                        "  (o)-----(o)";
+
+            }
+            public String getViewDescription (){
+                return "\nThis is an SUV\n" +
                         "     ______\n" +
                         " __//____|___\\__\n" +
                         "|_            _|\n" +
@@ -121,8 +144,17 @@ public class Vehicle {
 
         },
         convertible{
-            public String getDescription (){
+            public String getAddDescription (){
                 return "\nYou added a CONVERTIBLE.\n" +
+                        "      ______\n" +
+                        "     //  ||\\ \\\n" +
+                        " ____//___||_\\ \\___\n" +
+                        "|_   ______     _|\n" +
+                        "  `-(o)-----(o)-'";
+
+            }
+            public String getViewDescription (){
+                return "\nThis is a CONVERTIBLE.\n" +
                         "      ______\n" +
                         "     //  ||\\ \\\n" +
                         " ____//___||_\\ \\___\n" +
@@ -132,7 +164,8 @@ public class Vehicle {
             }
 
         };
-        public abstract String getDescription();
+        public abstract String getAddDescription();
+        public abstract String getViewDescription();
     }
 
     @Override
