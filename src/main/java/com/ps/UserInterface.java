@@ -3,6 +3,8 @@ package com.ps;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.ps.DealershipFileManager.saveDealership;
+
 public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
 
@@ -181,6 +183,7 @@ public class UserInterface {
             Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
             System.out.println("Vehicle added " + vehicle);
             dealership.addVehicle(vehicle);
+            saveDealership(dealership);
         } catch (IllegalArgumentException e) {
 //            e.printStackTrace();
             System.out.println("Invalid Vehicle type");

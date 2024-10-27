@@ -1,9 +1,8 @@
 package com.ps;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 
 public class DealershipFileManager {
@@ -17,7 +16,7 @@ public class DealershipFileManager {
             String firstLine = bufferedReader.readLine();
 //            if(firstLine != null){
 
-           System.out.println(firstLine);
+            System.out.println(firstLine);
             String[] dealershipDetails = firstLine.split("\\|");
             String name = dealershipDetails[0];
             String address = dealershipDetails[1];
@@ -48,9 +47,9 @@ public class DealershipFileManager {
             return dealership;
 
         } catch (IOException e) {
-            System.out.println("Error eading the file");
+            System.out.println("Error reading the file");
             e.printStackTrace();
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("error processing the file");
             e.printStackTrace();
         }
@@ -58,8 +57,39 @@ public class DealershipFileManager {
 
 
     }
-public static void saveDealership(){
 
-}
+    public static void saveDealership(Dealership dealership) {
+        try {
+//            String firstLine;
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("inventoryTest.csv"));
+            String firstLine = String.format("%s|%s|%s\n",
+                    dealership.getName(),
+                    dealership.getAddress(),
+                    dealership.getPhone());
+            bufferedWriter.write(firstLine);
+
+            List<Vehicle> vehicles = dealership.getAllVehicles();
+            for(Vehicle vehicle: vehicles){
+                String secondLine = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
+                        vehicle.getVin(),
+                        vehicle.getYear(),
+                        vehicle.getMake(),
+                        vehicle.getModel(),
+                        vehicle.getVehicleType(),
+                        vehicle.getColor(),
+                        vehicle.getOdometer(),
+                        vehicle.getPrice());
+                bufferedWriter.write(secondLine);
+            }
+            bufferedWriter.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error error error");
+        }
+
+
+    }
 
 }
