@@ -17,10 +17,8 @@ public class UserInterface {
 
     public static void display() {
         init();
-
         int menuCommand;
         do {
-            System.out.println("Welcome to the car Dealership");
             System.out.println("Please select an option");
             System.out.println("1) Find vehicles By Price range");
             System.out.println("2) Find vehicles By Make/model");
@@ -81,6 +79,7 @@ public class UserInterface {
 
     }
 
+
     private static void searchByPriceRange() {
         System.out.println("Please enter a minimum price");
         float minPrice = scanner.nextFloat();
@@ -90,6 +89,7 @@ public class UserInterface {
 
         List<Vehicle> results = dealership.getVehiclesByPrice(minPrice, maxPrice);
         displayResults(results);
+//        System.out.println(Vehicle.VehicleType.getDescription());
 //        scanner.nextLine();
 
     }
@@ -152,7 +152,7 @@ public class UserInterface {
         displayResults(results);
     }
 
-    private static void searchByVin(){
+    private static void searchByVin() {
         System.out.println("Enter the vin");
         int vin = scanner.nextInt();
         List<Vehicle> result = dealership.getVehicleByVin(vin);
@@ -181,7 +181,7 @@ public class UserInterface {
         try {
             Vehicle.VehicleType vehicleType = Vehicle.VehicleType.valueOf(type);
             Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-            System.out.println("Vehicle added " + vehicle);
+            System.out.println("Vehicle added " + vehicle + vehicleType.getDescription());
             dealership.addVehicle(vehicle);
             saveDealership(dealership);
         } catch (IllegalArgumentException e) {
@@ -190,18 +190,19 @@ public class UserInterface {
         }
     }
 
-    private static void removeVehicle(){
+    private static void removeVehicle() {
+
         System.out.println("Enter the vin of the vehicle to remove");
         int vin = scanner.nextInt();
         Vehicle removeVehicle = null;
 
-        for (Vehicle vehicle: dealership.getAllVehicles()){
-            if(vehicle.getVin() == vin){
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin) {
                 removeVehicle = vehicle;
                 break;
             }
         }
-        if(removeVehicle != null){
+        if (removeVehicle != null) {
             dealership.removeVehicle(removeVehicle);
             System.out.println("vehicle removed: " + removeVehicle);
         } else {
@@ -209,8 +210,9 @@ public class UserInterface {
         }
     }
 
-    private static void allVehicles(){
-        for(Vehicle vehicle: dealership.getAllVehicles()){
+    private static void allVehicles() {
+
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
             System.out.println(vehicle);
         }
     }

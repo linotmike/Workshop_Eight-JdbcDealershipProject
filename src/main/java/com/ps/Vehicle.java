@@ -86,23 +86,70 @@ public class Vehicle {
     }
 
     public enum VehicleType{
-        car,
-        truck,
-        suv,
-        convertible
+        car{
+                @Override
+            public String getDescription (){
+                    return "\nYou added a CAR\n" +
+                            "    ______\n" +
+                            " __//__||_\\__\n" +
+                            "|_          _|\n" +
+                            "  (o)----(o)";
+
+            }
+
+        },
+        truck{
+            public String getDescription (){
+                return "\nYou added a TRUCk\n" +
+                        "       _________________\n" +
+                        "   ____|               |\\\n" +
+                        "  |    |_______________| \\\n" +
+                        " [|____|-(o)-------(o)-|\n";
+
+            }
+
+        },
+        suv{
+            public String getDescription (){
+                return "\nYou added an SUV\n" +
+                        "     ______\n" +
+                        " __//____|___\\__\n" +
+                        "|_            _|\n" +
+                        "  (o)-----(o)";
+
+            }
+
+        },
+        convertible{
+            public String getDescription (){
+                return "\nYou added a CONVERTIBLE.\n" +
+                        "      ______\n" +
+                        "     //  ||\\ \\\n" +
+                        " ____//___||_\\ \\___\n" +
+                        "|_   ______     _|\n" +
+                        "  `-(o)-----(o)-'";
+
+            }
+
+        };
+        public abstract String getDescription();
     }
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "vin=" + vin +
-                ", year=" + year +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleType=" + vehicleType +
-                ", color='" + color + '\'' +
-                ", odometer=" + odometer +
-                ", price=" + price +
+        return "\n{" +
+                "\nvin=" + vin +
+                ", \nyear=" + year +
+                ", \nmake='" + make + '\'' +
+                ", \nmodel='" + model + '\'' +
+                ", \nvehicleType=" + vehicleType +
+                ", \ncolor='" + color + '\'' +
+                ", \nodometer=" + odometer +
+                ", \nprice=" + price +
                 '}';
     }
+
+//    public Vehicle() {
+//        super();
+//    }
 }
