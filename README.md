@@ -27,28 +27,30 @@ To use this application:
 ## Screenshot
 
 ## Home Screen
-![Screenshot ]()
+![Screenshot ](./src/demo/HomeScreen.png)
 ## Adding Vehicle
-![Screenshot ]()
+![Screenshot ](./src/demo/AddVehicle.png)
 ## Removing Vehicle
-![Screenshot ]()
+![Screenshot ](./src/demo/removeVehicle.png)
 ## All vehicles
-![Screenshot ]()
+![Screenshot ](./src/demo/allVehicles.png)
 ## Vehicles by Price
-![Screenshot ]()
+![Screenshot ](./src/demo/price.png)
 ## Vehicles by Make/Model
-![Screenshot ]()
+![Screenshot ](./src/demo/makeModel.png)
 ## Vehicles by Year
-![Screenshot ]()
+![Screenshot ](./src/demo/year.png)
 ## Vehicles by Color
-![Screenshot ]()
+![Screenshot ](./src/demo/color.png)
 ## Vehicles by Mileage
-![Screenshot ]()
+![Screenshot ](./src/demo/milage.png)
 ## Vehicles by Vehicle Type
-![Screenshot ]()
+![Screenshot ](./src/demo/vehicleType.png)
 ## Vehicles by VIN
-![Screenshot ]()
-## Previous Year Transactions
+![Screenshot ](./src/demo/vin.png)
+## Inventory.csv
+![Screenshot](./src/demo/Inventory.png)
+
 
 
 
@@ -80,8 +82,13 @@ To use this application:
 2. User Interaction: A menu-driven interface allows users to interact with the system. The user selects options from the menu, and the system performs the corresponding actions.
 3. File Management: Inventory data can be loaded from and saved to a CSV file, ensuring data persistence between sessions.
 4. Vehicle Management:
-<li>Vehicles are stored in an ArrayList within the Dealership class.</li>
-<li>Vehicle information, including type, is handled using an enum (VehicleType), which provides ASCII art and descriptions.
+<ul>
+<ul>
+  <li>Vehicles are stored in an ArrayList within the Dealership class.</li>
+  <li>Vehicle information, including type, is handled using an enum (VehicleType), which provides ASCII art and descriptions.
+
+</ul>
+</ul>
 
 
 
