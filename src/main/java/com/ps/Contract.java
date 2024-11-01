@@ -17,9 +17,10 @@ public abstract class Contract {
 
     }
 
-    abstract double getTotalPrice();
+    abstract public void getTotalPrice();
 
-    abstract double getMonthlyPayment();
+
+    abstract public void getMonthlyPayment();
 
 
     public String getDate() {
@@ -54,4 +55,13 @@ public abstract class Contract {
         this.vehicle = vehicle;
     }
 
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "date='" + date + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", vehicle=" + vehicle +
+                '}';
+    }
 }

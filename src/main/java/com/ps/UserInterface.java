@@ -55,6 +55,7 @@ public class UserInterface {
                     break;
                 case 11:
                     //sellLeaseVehicle();
+                    break;
                 case 99:
                     System.out.println("you choose to Quit");
                     break;
