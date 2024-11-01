@@ -57,4 +57,13 @@ public class SalesContract extends Contract {
     }
 
 
+    @Override
+    public String toString() {
+        return super.toString() + "SalesContract{" +
+                "salesTaxAmount=" + salesTaxAmount +
+                ", recordingFee=" + recordingFee +
+                ", processingFee=" + processingFee +
+                ", finance=" + finance +
+                '}';
+    }
 }
