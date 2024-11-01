@@ -1,4 +1,13 @@
 package com.ps;
 
-public class Contract {
+public abstract class Contract {
+    private String date;
+    private String name;
+    private String email;
+    private Vehicle vehicle;
+
+
+
+
+
 }

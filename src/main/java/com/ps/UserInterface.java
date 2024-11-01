@@ -53,6 +53,8 @@ public class UserInterface {
                 case 10:
                     removeVehicle();
                     break;
+                case 11:
+                    //sellLeaseVehicle();
                 case 99:
                     System.out.println("you choose to Quit");
                     break;
@@ -78,6 +80,7 @@ public class UserInterface {
         System.out.println("8) All vehicles");
         System.out.println("9) Add a vehicles");
         System.out.println("10) Remove a vehicles");
+        System.out.println("11) Sell/Lease a vehicle");
         System.out.println("99)Quit");
     }
 
@@ -217,6 +220,9 @@ public class UserInterface {
         for (Vehicle vehicle : dealership.getAllVehicles()) {
             System.out.println(vehicle+ vehicle.getVehicleType().getViewDescription());
         }
+    }
+    private static void sellLeaseVehicle(){
+
     }
 
 
