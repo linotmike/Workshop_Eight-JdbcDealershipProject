@@ -8,7 +8,7 @@ public abstract class Contract {
     private String email;
     private Vehicle vehicle;
 
-    public Contract( String date,String name, String email, Vehicle vehicle){
+    public Contract(String date, String name, String email, Vehicle vehicle) {
         this.date = date;
         this.name = name;
         this.email = email;
@@ -17,11 +17,16 @@ public abstract class Contract {
 
     }
 
+    abstract double getTotalPrice();
 
-    public String getDate(){
+    abstract double getMonthlyPayment();
+
+
+    public String getDate() {
         return date;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
