@@ -4,6 +4,7 @@ public class SalesContract extends Contract {
 
     private double salesTaxAmount;
     private float recordingFee;
+//    private Vehicle vehicleSold;
     private float processingFee;
     private boolean finance;
     private double salesInterest;
@@ -40,6 +41,7 @@ public class SalesContract extends Contract {
     }
 
 
+
     public boolean isFinance() {
         return finance;
     }
@@ -64,6 +66,22 @@ public class SalesContract extends Contract {
         this.recordingFee = recordingFee;
     }
 
+    public double getSalesInterest() {
+        return salesInterest;
+    }
+
+    public void setSalesInterest(double salesInterest) {
+        this.salesInterest = salesInterest;
+    }
+
+    public double getSalesTermMonths() {
+        return salesTermMonths;
+    }
+
+    public void setSalesTermMonths(double salesTermMonths) {
+        this.salesTermMonths = salesTermMonths;
+    }
+
     public double getSalesTaxAmount() {
         return salesTaxAmount;
     }
@@ -71,13 +89,25 @@ public class SalesContract extends Contract {
     public void setSalesTaxAmount(double salesTaxAmount) {
         this.salesTaxAmount = salesTaxAmount;
     }
+    public double calculatedTotalPrice (){
+        double vehiclePrice = getVehicle().getPrice();
+        double taxAmount = vehiclePrice * salesTaxAmount;
+        return taxAmount + recordingFee + processingFee + vehiclePrice;
 
-    @Override
-    public void getTotalPrice() {
+
+    }
+    public double calculatedMonthlyPayment (){
+        return calculatedTotalPrice();
+
     }
 
-    public void getMonthlyPayment() {
+    @Override
+    public double getTotalPrice() {
+        return calculatedTotalPrice();
+    }
 
+    public double getMonthlyPayment() {
+        return calculatedMonthlyPayment();
 
     }
 

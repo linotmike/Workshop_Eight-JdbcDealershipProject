@@ -17,10 +17,10 @@ public abstract class Contract {
 
     }
 
-    abstract public void getTotalPrice();
+    abstract public double getTotalPrice();
 
 
-    abstract public void getMonthlyPayment();
+    abstract public double getMonthlyPayment();
 
 
     public String getDate() {
