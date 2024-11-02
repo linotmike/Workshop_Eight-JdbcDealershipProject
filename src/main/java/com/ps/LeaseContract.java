@@ -1,6 +1,6 @@
 package com.ps;
 
-public class LeaseContract extends Contract{
+public class LeaseContract extends Contract {
 
     private double originalPrice;
     private double expectedEndingValue;
@@ -10,8 +10,8 @@ public class LeaseContract extends Contract{
     private double leaseTermMonths;
 
 
-    public LeaseContract (String date, String name, String email, Vehicle vehicle, double originalPrice, double expectedEndingValue, double downPayment,double leaseFee, double interestRate, double leaseTermMonths){
-        super(date,name,email,vehicle);
+    public LeaseContract(String date, String name, String email, Vehicle vehicle, double originalPrice, double expectedEndingValue, double downPayment, double leaseFee, double interestRate, double leaseTermMonths) {
+        super(date, name, email, vehicle);
         this.originalPrice = originalPrice;
         this.expectedEndingValue = originalPrice * 0.50;
         this.downPayment = downPayment;
@@ -68,12 +68,15 @@ public class LeaseContract extends Contract{
     public void setLeaseTermMonths(double leaseTermMonths) {
         this.leaseTermMonths = leaseTermMonths;
     }
-
-    public double getTotalPrice(){
+    @Override
+    public double getTotalPrice() {
+        //Total Price=downPayment+leaseFee+(originalPrice−expectedEndingValue)
+        return downPayment + leaseFee + (originalPrice - expectedEndingValue);
 
     }
 
-    public double getMonthlyPayment(){
+    public double getMonthlyPayment() {
+//        return
 
     }
 }
