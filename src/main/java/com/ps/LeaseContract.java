@@ -76,7 +76,22 @@ public class LeaseContract extends Contract {
     }
 
     public double getMonthlyPayment() {
-//        return
+        double principal = originalPrice = expectedEndingValue;
 
+        return (principal* interestRate)/ (1 -Math.pow(1 + interestRate, -leaseTermMonths));
+
+
+    }
+
+    @Override
+    public String toString() {
+        return "LeaseContract{" +
+                "originalPrice=" + originalPrice +
+                ", expectedEndingValue=" + expectedEndingValue +
+                ", downPayment=" + downPayment +
+                ", leaseFee=" + leaseFee +
+                ", interestRate=" + interestRate +
+                ", leaseTermMonths=" + leaseTermMonths +
+                '}';
     }
 }
