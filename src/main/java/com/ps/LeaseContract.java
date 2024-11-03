@@ -85,7 +85,7 @@ public class LeaseContract extends Contract {
 
     @Override
     public String toString() {
-        return "LeaseContract{" +
+        return super.toString() + "LeaseContract{" +
                 "originalPrice=" + originalPrice +
                 ", expectedEndingValue=" + expectedEndingValue +
                 ", downPayment=" + downPayment +

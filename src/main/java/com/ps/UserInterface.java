@@ -9,11 +9,14 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
 
     private static Dealership dealership;
-//    private static Contract contract;
+
+
 
     public static void init() {
         dealership = DealershipFileManager.getDealership();
-//        contract = ContractFileManager.readContracts();
+        ContractFileManager contractFileManager = new ContractFileManager();
+        contractFileManager.readContracts();
+
     }
 
     public static void display() {

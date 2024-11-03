@@ -97,7 +97,13 @@ public class SalesContract extends Contract {
 
     }
     public double calculatedMonthlyPayment (){
-        return calculatedTotalPrice();
+         if(!finance){
+             return 0.00;
+        }
+        double loanAmount = getVehicle().getPrice() + recordingFee + processingFee;
+        double monthlyInterestRate = salesInterest /12 /100;
+        return (loanAmount * monthlyInterestRate) / (1- Math.pow(1+ monthlyInterestRate, -salesTermMonths));
+
 
     }
 
@@ -114,11 +120,16 @@ public class SalesContract extends Contract {
 
     @Override
     public String toString() {
-        return super.toString() + "SalesContract{" +
-                "salesTaxAmount=" + salesTaxAmount +
-                ", recordingFee=" + recordingFee +
-                ", processingFee=" + processingFee +
-                ", finance=" + finance +
-                '}';
+        return String.format(
+                "Sales | Date: %s | Name: %s | Email: %s | VIN: %d | Year: %d | Make: %s | Model: %s | " +
+                        "Type: %s | Color: %s | Odometer: %d | Price: $%.2f | Sales Tax: $%.2f | Recording Fee: $%.2f | " +
+                        "Processing Fee: $%.2f | Total Price: $%.2f | Financed: %s | Monthly Payment: $%.2f",
+                getDate(), getName(), getEmail(), getVehicle().getVin(), getVehicle().getYear(),
+                getVehicle().getMake(), getVehicle().getModel(), getVehicle().getVehicleType(), getVehicle().getColor(),
+                getVehicle().getOdometer(), getVehicle().getPrice(), salesTaxAmount,
+                recordingFee, processingFee, getTotalPrice(), finance ? "Yes" : "No", getMonthlyPayment()
+        );
     }
+
+
 }
