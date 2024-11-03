@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,6 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
 
     private static Dealership dealership;
-
 
 
     public static void init() {
@@ -58,7 +58,7 @@ public class UserInterface {
                     removeVehicle();
                     break;
                 case 11:
-                    //sellLeaseVehicle();
+                    sellLeaseVehicle();
                     break;
                 case 99:
                     System.out.println("you choose to Quit");
@@ -73,7 +73,8 @@ public class UserInterface {
         } while (menuCommand != 99);
 
     }
-    private static void displayMenu(){
+
+    private static void displayMenu() {
         System.out.println("Please select an option");
         System.out.println("1) Find vehicles By Price range");
         System.out.println("2) Find vehicles By Make/model");
@@ -204,6 +205,7 @@ public class UserInterface {
 
         System.out.println("Enter the vin of the vehicle to remove");
         int vin = scanner.nextInt();
+        scanner.nextLine();
         Vehicle removeVehicle = null;
 
         for (Vehicle vehicle : dealership.getAllVehicles()) {
@@ -223,10 +225,60 @@ public class UserInterface {
     private static void allVehicles() {
 
         for (Vehicle vehicle : dealership.getAllVehicles()) {
-            System.out.println(vehicle+ vehicle.getVehicleType().getViewDescription());
+            System.out.println(vehicle + vehicle.getVehicleType().getViewDescription());
         }
     }
-    private static void sellLeaseVehicle(){
+
+    public static void sellLeaseVehicle() {
+        System.out.println("would you like to sell or lease 1) sell 2)lease");
+        int response = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Available vehicles");
+        for (Vehicle vehicle : dealership.getAllVehicles())
+            System.out.println(vehicle);
+        System.out.println("please enter the vin of the vehicle you would like");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+//        scanner.nextLine();
+        List<Vehicle> vehicles = dealership.getVehicleByVin(vin);
+        Vehicle vehicle = vehicles.get(0);
+
+//        Vehicle vehicle = (Vehicle) dealership.getVehicleByVin(vin);
+        if (vehicle == null) {
+            System.out.println("Vehicle not found");
+            return;
+        }
+//        scanner.nextLine();
+        System.out.println("enter the date");
+        String date = LocalDate.now().toString();
+        scanner.nextLine();
+        System.out.println("Enter your name");
+        String name = scanner.nextLine();
+        System.out.println("Enter your email");
+        String email = scanner.nextLine();
+        Contract contract;
+        if (response == 1) {
+            System.out.println("Do you want to finance 1)Yes 2)No");
+            int financeResponse = scanner.nextInt();
+            scanner.nextLine();
+            boolean finance = (financeResponse == 1);
+            contract = new SalesContract(date, name, email, vehicle, finance);
+            System.out.println("Sales contract added" + contract);
+        } else if(response ==2){
+            System.out.println("Enter the original price");
+            double originalPrice = scanner.nextDouble();
+            System.out.println("Enter the down payment amount");
+            double downPayment = scanner.nextDouble();
+
+            contract = new LeaseContract(date,name,email,vehicle,originalPrice,downPayment);
+            System.out.println("Lease contract added " + contract);
+
+        } else {
+            System.out.println("Invalid option");
+
+        }
+
+
 
     }
 
