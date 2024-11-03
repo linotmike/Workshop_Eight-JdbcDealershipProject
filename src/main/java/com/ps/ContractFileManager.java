@@ -89,11 +89,11 @@ public class ContractFileManager {
         int odometer = Integer.parseInt(contractDetails[10]);
         float price = Float.parseFloat(contractDetails[11]);
         double originalPrice = Double.parseDouble(contractDetails[14]);
+        double expectedEndingValue = Double.parseDouble(contractDetails[15]);
         double downPayment = 0;
         if(contractDetails.length > 16 && !contractDetails[16].isEmpty()){
          downPayment = Double.parseDouble(contractDetails[16]);
         }
-        double expectedEndingValue = Double.parseDouble(contractDetails[15]);
 
         Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
 

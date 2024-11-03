@@ -75,9 +75,10 @@ public class LeaseContract extends Contract {
     }
 
     public double calculatedMonthly() {
-        double principal = originalPrice = expectedEndingValue;
+        double principal = originalPrice - expectedEndingValue;
+        double montlyInterestRate = interestRate /12 /100;
 
-        return (principal * interestRate) / (1 - Math.pow(1 + interestRate, -leaseTermMonths));
+        return (principal * montlyInterestRate) / (1 - Math.pow(1 + montlyInterestRate, -leaseTermMonths));
     }
 
     @Override
@@ -98,13 +99,14 @@ public class LeaseContract extends Contract {
 
     @Override
     public String toString() {
-        return super.toString() + "LeaseContract{" +
-                "originalPrice=" + originalPrice +
-                ", expectedEndingValue=" + expectedEndingValue +
-                ", downPayment=" + downPayment +
-                ", leaseFee=" + leaseFee +
-                ", interestRate=" + interestRate +
-                ", leaseTermMonths=" + leaseTermMonths +
-                '}';
+        return String.format(
+                "Lease | Date: %s | Name: %s | Email: %s | VIN: %d | Year: %d | Make: %s | Model: %s | " +
+                        "Type: %s | Color: %s | Odometer: %d | Price: $%.2f | OriginalPrice: $%.2f | Expected Ending Value: $%.2f | " +
+                        "Down Payment: $%.2f |  " + "Monthly Payment: $%.2f",
+                getDate(), getName(), getEmail(), getVehicle().getVin(), getVehicle().getYear(),
+                getVehicle().getMake(), getVehicle().getModel(), getVehicle().getVehicleType(), getVehicle().getColor(),
+                getVehicle().getOdometer(), getVehicle().getPrice(), originalPrice, expectedEndingValue,
+                downPayment, getMonthlyPayment()
+        );
     }
 }
