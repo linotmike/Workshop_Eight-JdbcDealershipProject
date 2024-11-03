@@ -16,7 +16,7 @@ public class UserInterface {
     public static void init() {
         dealership = DealershipFileManager.getDealership();
         ContractFileManager contractFileManager = new ContractFileManager();
-        contractFileManager.readContracts();
+//        contractFileManager.readContracts();
 
     }
 

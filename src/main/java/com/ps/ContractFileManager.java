@@ -110,7 +110,7 @@ public class ContractFileManager {
     }
 
     public void writeContract(Contract contract){
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("contractTest.csv",true))){
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("contract.csv",true))){
 
             if(contract instanceof SalesContract){
                 SalesContract salesContract = (SalesContract) contract;
