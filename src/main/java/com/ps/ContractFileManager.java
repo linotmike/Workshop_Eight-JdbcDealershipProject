@@ -63,11 +63,14 @@ public class ContractFileManager {
         salesContract.setProcessingFee(processingFee);
 
 
-        double totalPrice = salesContract.getTotalPrice();
-        double monthlyPayment = salesContract.getMonthlyPayment();
-
-        contractDetails[15] = String.valueOf(totalPrice);
-        contractDetails[17] = String.valueOf(monthlyPayment);
+        if(contractDetails.length > 15 && !contractDetails[15].isEmpty()){
+            double totalPrice = Double.parseDouble(contractDetails[15]);
+            salesContract.setTotalPrice(totalPrice);
+        }
+        if(contractDetails.length > 17 && !contractDetails[17].isEmpty()){
+            double monthlyPrice = Double.parseDouble(contractDetails[17]);
+            salesContract.setMonthlyPayment(monthlyPrice);
+        }
 
 
         return salesContract;

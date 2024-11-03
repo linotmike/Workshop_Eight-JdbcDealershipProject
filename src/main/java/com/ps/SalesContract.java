@@ -9,6 +9,8 @@ public class SalesContract extends Contract {
     private boolean finance;
     private double salesInterest;
     private double salesTermMonths;
+    private double totalPrice = 0;
+    private double monthlyPayment = 0;
 
 
     public SalesContract(String date, String name, String email, Vehicle vehicleSold, boolean finance) {
@@ -107,12 +109,26 @@ public class SalesContract extends Contract {
 
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setMonthlyPayment(double monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
+    }
+
     @Override
     public double getTotalPrice() {
+        if(totalPrice != 0){
+            return totalPrice;
+        }
         return calculatedTotalPrice();
     }
 
     public double getMonthlyPayment() {
+        if(monthlyPayment != 0){
+            return monthlyPayment;
+        }
         return calculatedMonthlyPayment();
 
     }
