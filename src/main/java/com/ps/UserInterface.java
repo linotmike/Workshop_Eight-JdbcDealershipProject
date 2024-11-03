@@ -8,6 +8,7 @@ import static com.ps.DealershipFileManager.saveDealership;
 
 public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
+    private static ContractFileManager contractFileManager = new ContractFileManager();
 
     private static Dealership dealership;
 
@@ -22,6 +23,7 @@ public class UserInterface {
     public static void display() {
         init();
         int menuCommand;
+        UserInterface userInterface = new UserInterface();
         do {
             displayMenu();
             menuCommand = scanner.nextInt();
@@ -58,7 +60,7 @@ public class UserInterface {
                     removeVehicle();
                     break;
                 case 11:
-                    sellLeaseVehicle();
+                    userInterface.sellLeaseVehicle();
                     break;
                 case 99:
                     System.out.println("you choose to Quit");
@@ -229,7 +231,7 @@ public class UserInterface {
         }
     }
 
-    public static void sellLeaseVehicle() {
+    public void sellLeaseVehicle() {
         System.out.println("would you like to sell or lease 1) sell 2)lease");
         int response = scanner.nextInt();
         scanner.nextLine();
@@ -256,7 +258,7 @@ public class UserInterface {
         String name = scanner.nextLine();
         System.out.println("Enter your email");
         String email = scanner.nextLine();
-        Contract contract;
+        Contract contract = null;
         if (response == 1) {
             System.out.println("Do you want to finance 1)Yes 2)No");
             int financeResponse = scanner.nextInt();
@@ -264,21 +266,20 @@ public class UserInterface {
             boolean finance = (financeResponse == 1);
             contract = new SalesContract(date, name, email, vehicle, finance);
             System.out.println("Sales contract added" + contract);
-        } else if(response ==2){
+        } else if (response == 2) {
             System.out.println("Enter the original price");
             double originalPrice = scanner.nextDouble();
             System.out.println("Enter the down payment amount");
             double downPayment = scanner.nextDouble();
 
-            contract = new LeaseContract(date,name,email,vehicle,originalPrice,downPayment);
+            contract = new LeaseContract(date, name, email, vehicle, originalPrice, downPayment);
             System.out.println("Lease contract added " + contract);
 
         } else {
             System.out.println("Invalid option");
-
         }
 
-
+            contractFileManager.writeContract(contract);
 
     }
 

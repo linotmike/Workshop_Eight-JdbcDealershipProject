@@ -1,8 +1,7 @@
 package com.ps;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 //import java.io.StringReader;
 
 public class ContractFileManager {
@@ -91,15 +90,15 @@ public class ContractFileManager {
         double originalPrice = Double.parseDouble(contractDetails[14]);
         double expectedEndingValue = Double.parseDouble(contractDetails[15]);
         double downPayment = 0;
-        if(contractDetails.length > 16 && !contractDetails[16].isEmpty()){
-         downPayment = Double.parseDouble(contractDetails[16]);
+        if (contractDetails.length > 16 && !contractDetails[16].isEmpty()) {
+            downPayment = Double.parseDouble(contractDetails[16]);
         }
 
-        Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
 
-        LeaseContract leaseContract = new LeaseContract(date,name,email,vehicle,originalPrice,downPayment);
+        LeaseContract leaseContract = new LeaseContract(date, name, email, vehicle, originalPrice, downPayment);
 
-        if(contractDetails.length > 17 && !contractDetails[17].isEmpty()){
+        if (contractDetails.length > 17 && !contractDetails[17].isEmpty()) {
             double monthlyPayment = Double.parseDouble(contractDetails[17]);
             leaseContract.setMonthlyPayment(monthlyPayment);
         }
@@ -107,7 +106,48 @@ public class ContractFileManager {
         leaseContract.setExpectedEndingValue(expectedEndingValue);
 
 
-
         return leaseContract;
+    }
+
+    public void writeContract(Contract contract){
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("contractTest.csv",true))){
+
+            if(contract instanceof SalesContract){
+                SalesContract salesContract = (SalesContract) contract;
+                bufferedWriter.write(formatSalesContract(salesContract));
+                bufferedWriter.newLine();
+
+            } else if(contract instanceof LeaseContract){
+                LeaseContract leaseContract = (LeaseContract) contract;
+                bufferedWriter.write(formatLeaseContract(leaseContract));
+                bufferedWriter.newLine();
+
+            } else {
+                System.out.println("unknown contract type");
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private String formatSalesContract (SalesContract salesContract){
+        return String.format("Sale | Date: %s | Name: %s | Email: %s | VIN: %d | Year: %d | Make: %s | Model: %s | " +
+                        "Type: %s | Color: %s | Odometer: %d | Price: $%.2f | Sales Tax: $%.2f | Recording Fee: $%.2f | " +
+                        "Processing Fee: $%.2f | Total Price: $%.2f | Financed: %s | Monthly Payment: $%.2f",
+                salesContract.getDate(), salesContract.getName(), salesContract.getEmail(),
+                salesContract.getVehicle().getVin(), salesContract.getVehicle().getYear(),
+                salesContract.getVehicle().getMake(), salesContract.getVehicle().getModel(),
+                salesContract.getVehicle().getVehicleType(), salesContract.getVehicle().getColor(),
+                salesContract.getVehicle().getOdometer(), salesContract.getVehicle().getPrice(),
+                salesContract.getSalesTaxAmount(), salesContract.getRecordingFee(),
+                salesContract.getProcessingFee(), salesContract.getTotalPrice(),
+                salesContract.isFinance() ? "Yes" : "No", salesContract.getMonthlyPayment());
+    }
+
+    private String formatLeaseContract(LeaseContract leaseContract){
+        return String.format("");
     }
 }
