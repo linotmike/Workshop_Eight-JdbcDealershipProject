@@ -4,7 +4,7 @@ public class SalesContract extends Contract {
 
     private double salesTaxAmount;
     private float recordingFee;
-//    private Vehicle vehicleSold;
+    //    private Vehicle vehicleSold;
     private float processingFee;
     private boolean finance;
     private double salesInterest;
@@ -41,7 +41,6 @@ public class SalesContract extends Contract {
         }
 
     }
-
 
 
     public boolean isFinance() {
@@ -91,20 +90,22 @@ public class SalesContract extends Contract {
     public void setSalesTaxAmount(double salesTaxAmount) {
         this.salesTaxAmount = salesTaxAmount;
     }
-    public double calculatedTotalPrice (){
+
+    public double calculatedTotalPrice() {
         double vehiclePrice = getVehicle().getPrice();
         double taxAmount = vehiclePrice * salesTaxAmount;
         return taxAmount + recordingFee + processingFee + vehiclePrice;
 
 
     }
-    public double calculatedMonthlyPayment (){
-         if(!finance){
-             return 0.00;
+
+    public double calculatedMonthlyPayment() {
+        if (!finance) {
+            return 0.00;
         }
         double loanAmount = getVehicle().getPrice() + recordingFee + processingFee;
-        double monthlyInterestRate = salesInterest /12 /100;
-        return (loanAmount * monthlyInterestRate) / (1- Math.pow(1+ monthlyInterestRate, -salesTermMonths));
+        double monthlyInterestRate = salesInterest / 12 / 100;
+        return (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -salesTermMonths));
 
 
     }
@@ -119,14 +120,14 @@ public class SalesContract extends Contract {
 
     @Override
     public double getTotalPrice() {
-        if(totalPrice != 0){
+        if (totalPrice != 0) {
             return totalPrice;
         }
         return calculatedTotalPrice();
     }
 
     public double getMonthlyPayment() {
-        if(monthlyPayment != 0){
+        if (monthlyPayment != 0) {
             return monthlyPayment;
         }
         return calculatedMonthlyPayment();

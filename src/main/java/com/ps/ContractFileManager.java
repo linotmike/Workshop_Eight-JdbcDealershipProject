@@ -63,11 +63,11 @@ public class ContractFileManager {
         salesContract.setProcessingFee(processingFee);
 
 
-        if(contractDetails.length > 15 && !contractDetails[15].isEmpty()){
+        if (contractDetails.length > 15 && !contractDetails[15].isEmpty()) {
             double totalPrice = Double.parseDouble(contractDetails[15]);
             salesContract.setTotalPrice(totalPrice);
         }
-        if(contractDetails.length > 17 && !contractDetails[17].isEmpty()){
+        if (contractDetails.length > 17 && !contractDetails[17].isEmpty()) {
             double monthlyPrice = Double.parseDouble(contractDetails[17]);
             salesContract.setMonthlyPayment(monthlyPrice);
         }
@@ -77,6 +77,37 @@ public class ContractFileManager {
     }
 
     private LeaseContract parseLeaseContract(String[] contractDetails) {
-        return null;
+        String date = contractDetails[1];
+        String name = contractDetails[2];
+        String email = contractDetails[3];
+        int vin = Integer.parseInt(contractDetails[4]);
+        int year = Integer.parseInt(contractDetails[5]);
+        String make = contractDetails[6];
+        String model = contractDetails[7];
+        Vehicle.VehicleType vehicleType = Vehicle.VehicleType.valueOf(contractDetails[8].toLowerCase());
+        String color = contractDetails[9];
+        int odometer = Integer.parseInt(contractDetails[10]);
+        float price = Float.parseFloat(contractDetails[11]);
+        double originalPrice = Double.parseDouble(contractDetails[14]);
+        double downPayment = 0;
+        if(contractDetails.length > 16 && !contractDetails[16].isEmpty()){
+         downPayment = Double.parseDouble(contractDetails[16]);
+        }
+        double expectedEndingValue = Double.parseDouble(contractDetails[15]);
+
+        Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
+
+        LeaseContract leaseContract = new LeaseContract(date,name,email,vehicle,originalPrice,downPayment);
+
+        if(contractDetails.length > 17 && !contractDetails[17].isEmpty()){
+            double monthlyPayment = Double.parseDouble(contractDetails[17]);
+            leaseContract.setMonthlyPayment(monthlyPayment);
+        }
+
+        leaseContract.setExpectedEndingValue(expectedEndingValue);
+
+
+
+        return leaseContract;
     }
 }
