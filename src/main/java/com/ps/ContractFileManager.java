@@ -148,6 +148,15 @@ public class ContractFileManager {
     }
 
     private String formatLeaseContract(LeaseContract leaseContract){
-        return String.format("");
+        return String.format("Lease | Date: %s | Name: %s | Email: %s | VIN: %d | Year: %d | Make: %s | Model: %s | " +
+                        "Type: %s | Color: %s | Odometer: %d | Price: $%.2f | Original Price: $%.2f | " +
+                        "Expected Ending Value: $%.2f | Down Payment: $%.2f | Monthly Payment: $%.2f",
+                leaseContract.getDate(), leaseContract.getName(), leaseContract.getEmail(),
+                leaseContract.getVehicle().getVin(), leaseContract.getVehicle().getYear(),
+                leaseContract.getVehicle().getMake(), leaseContract.getVehicle().getModel(),
+                leaseContract.getVehicle().getVehicleType(), leaseContract.getVehicle().getColor(),
+                leaseContract.getVehicle().getOdometer(), leaseContract.getVehicle().getPrice(),
+                leaseContract.getOriginalPrice(), leaseContract.getExpectedEndingValue(),
+                leaseContract.getDownPayment(), leaseContract.getMonthlyPayment());
     }
 }

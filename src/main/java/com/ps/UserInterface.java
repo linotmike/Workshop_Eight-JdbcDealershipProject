@@ -265,7 +265,7 @@ public class UserInterface {
             scanner.nextLine();
             boolean finance = (financeResponse == 1);
             contract = new SalesContract(date, name, email, vehicle, finance);
-            System.out.println("Sales contract added" + contract);
+            System.out.println("Sales contract added\n" + contract);
         } else if (response == 2) {
             System.out.println("Enter the original price");
             double originalPrice = scanner.nextDouble();
@@ -273,7 +273,7 @@ public class UserInterface {
             double downPayment = scanner.nextDouble();
 
             contract = new LeaseContract(date, name, email, vehicle, originalPrice, downPayment);
-            System.out.println("Lease contract added " + contract);
+            System.out.println("Lease contract added\n" + contract);
 
         } else {
             System.out.println("Invalid option");
