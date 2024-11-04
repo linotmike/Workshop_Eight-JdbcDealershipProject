@@ -27,7 +27,15 @@ To use this application:
 ## Screenshot
 
 ## Home Screen
-![Screenshot ](./src/demo/HomeScreen.png)
+![Screenshot ](./src/demo/Main.png)
+
+## Selling vehicle
+
+![Screenshot ](./src/demo/sellLease.png)
+
+## Leasing a vehicle
+![Screenshot ](./src/demo/leaseing.png)
+
 ## Adding Vehicle
 ![Screenshot ](./src/demo/AddVehicle.png)
 ## Removing Vehicle
