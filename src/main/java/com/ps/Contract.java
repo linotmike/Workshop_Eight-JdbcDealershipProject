@@ -1,6 +1,6 @@
-package com.ps;
+package main.java.com.ps;
 
-import java.util.ArrayList;
+import main.java.com.ps.Vehicle;
 
 public abstract class Contract {
     private String date;

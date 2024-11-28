@@ -1,4 +1,4 @@
-package com.ps;
+package main.java.com.ps;
 
 
 import java.io.*;

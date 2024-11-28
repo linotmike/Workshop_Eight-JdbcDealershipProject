@@ -1,7 +1,6 @@
-package com.ps;
+package main.java.com.ps;
 
 import java.io.*;
-import java.util.List;
 //import java.io.StringReader;
 
 public class ContractFileManager {
