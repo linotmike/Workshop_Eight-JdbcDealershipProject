@@ -1,10 +1,11 @@
-package main.java.com.ps;
+package com.ps;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import static main.java.com.ps.DealershipFileManager.saveDealership;
+//import static DealershipFileManager.saveDealership;
+import static com.ps.DealershipFileManager.saveDealership;
 
 public class UserInterface {
     static Scanner scanner = new Scanner(System.in);

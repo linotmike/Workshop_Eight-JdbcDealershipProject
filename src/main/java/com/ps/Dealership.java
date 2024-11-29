@@ -1,6 +1,6 @@
-package main.java.com.ps;
+package com.ps;
 
-import main.java.com.ps.Vehicle;
+import com.ps.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
