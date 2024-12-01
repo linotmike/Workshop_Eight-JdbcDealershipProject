@@ -62,17 +62,45 @@ public class DealershipDataManager {
             preparedStatement.setString(5, vehicle.getColor());
             preparedStatement.setInt(6, vehicle.getOdometer());
             preparedStatement.setFloat(7, vehicle.getPrice());
-            preparedStatement.setInt(8,vehicle.getVin());
+            preparedStatement.setInt(8, vehicle.getVin());
 
             int rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated > 0){
+            if (rowsUpdated > 0) {
                 System.out.println("rows updated " + rowsUpdated);
             } else {
-            System.out.println("No rows updated");
+                System.out.println("No rows updated");
 
             }
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void createVehicle(Vehicle vehicle) {
+        String query = "INSERT INTO vehicles (vin, year, make, model, vehicle_type, color, odometer, price) VALUES (?,?,?,?,?,?,?,?)";
+
+        try (
+                Connection connection = this.dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ) {
+            preparedStatement.setInt(1, vehicle.getVin());
+            preparedStatement.setInt(2, vehicle.getYear());
+            preparedStatement.setString(3, vehicle.getMake());
+            preparedStatement.setString(4, vehicle.getModel());
+            preparedStatement.setString(5, vehicle.getVehicleType().name());
+            preparedStatement.setString(6, vehicle.getColor());
+            preparedStatement.setInt(7, vehicle.getOdometer());
+            preparedStatement.setFloat(8, vehicle.getPrice());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if(rowsUpdated > 0 ){
+                System.out.println("Rows updated" + rowsUpdated);
+            } else {
+                System.out.println("No rows updated");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
