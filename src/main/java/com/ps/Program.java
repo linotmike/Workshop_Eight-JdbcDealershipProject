@@ -29,8 +29,8 @@ public class Program {
 //        System.out.println(allVehicles);
         Vehicle vehicle = new Vehicle(1007,2001,"honda","civic", Vehicle.VehicleType.car,"silver",200341,2000 );
 //        dealershipDataManager.updateVehicles(vehicle);
-        dealershipDataManager.createVehicle(vehicle);
-        System.out.println(vehicle);
-
+//        dealershipDataManager.createVehicle(vehicle);
+//        System.out.println(vehicle);
+dealershipDataManager.deleteVehicle(1007);
     }
 }

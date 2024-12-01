@@ -85,7 +85,7 @@ public class DealershipDataManager {
         try (
                 Connection connection = this.dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ) {
+        ) {
             preparedStatement.setInt(1, vehicle.getVin());
             preparedStatement.setInt(2, vehicle.getYear());
             preparedStatement.setString(3, vehicle.getMake());
@@ -96,7 +96,7 @@ public class DealershipDataManager {
             preparedStatement.setFloat(8, vehicle.getPrice());
 
             int rowsUpdated = preparedStatement.executeUpdate();
-            if(rowsUpdated > 0 ){
+            if (rowsUpdated > 0) {
                 System.out.println("Rows updated" + rowsUpdated);
             } else {
                 System.out.println("No rows updated");
@@ -105,6 +105,25 @@ public class DealershipDataManager {
             e.printStackTrace();
         }
 
+    }
+
+    public void deleteVehicle(int vin) {
+        String query = "DELETE FROM vehicles WHERE vin = ?";
+        try (
+                Connection connection = this.dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                ) {
+            preparedStatement.setInt(1,vin);
+            int rowsDeleted = preparedStatement.executeUpdate();
+            if (rowsDeleted > 0){
+                System.out.println("Vehicle with VIN " + vin + " deleted successfully. Rows affected: " + rowsDeleted);
+            } else {
+                System.out.println("No vehicles deleted");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
