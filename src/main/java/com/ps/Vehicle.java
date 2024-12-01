@@ -10,6 +10,7 @@ public class Vehicle {
     private int odometer;
     private float price;
 
+    public Vehicle(){}
     public Vehicle(int vin, int year, String make, String model, VehicleType vehicleType, String color, int odometer, float price) {
         this.vin = vin;
         this.year = year;

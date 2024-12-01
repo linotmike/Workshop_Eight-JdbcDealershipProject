@@ -3,11 +3,12 @@ package com.ps;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args) throws SQLException {
         System.out.println("Welcome to the car Dealership");
-        UserInterface.display();
+//        UserInterface.display();
 
         if(args.length !=2 ){
             System.out.println("Application needs two arguments to run: username and password");
@@ -22,6 +23,10 @@ public class Program {
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
 
+
+        DealershipDataManager dealershipDataManager = new DealershipDataManager(basicDataSource);
+        List<Vehicle> allVehicles = dealershipDataManager.getAllVehicles();
+        System.out.println(allVehicles);
 
     }
 }
