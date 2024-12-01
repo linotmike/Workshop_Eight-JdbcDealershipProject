@@ -48,4 +48,35 @@ public class DealershipDataManager {
         return allVehicles;
     }
 
+    public void updateVehicles(Vehicle vehicle) {
+        String query = "UPDATE vehicles SET year = ?, make = ?, model = ?, vehicle_type = ? , color = ?, odometer = ? ,price = ? WHERE vin = ?";
+
+        try (
+                Connection connection = this.dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setInt(1, vehicle.getYear());
+            preparedStatement.setString(2, vehicle.getMake());
+            preparedStatement.setString(3, vehicle.getModel());
+            preparedStatement.setString(4, vehicle.getVehicleType().name());
+            preparedStatement.setString(5, vehicle.getColor());
+            preparedStatement.setInt(6, vehicle.getOdometer());
+            preparedStatement.setFloat(7, vehicle.getPrice());
+            preparedStatement.setInt(8,vehicle.getVin());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0){
+                System.out.println("rows updated " + rowsUpdated);
+            } else {
+            System.out.println("No rows updated");
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

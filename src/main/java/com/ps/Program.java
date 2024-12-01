@@ -25,8 +25,12 @@ public class Program {
 
 
         DealershipDataManager dealershipDataManager = new DealershipDataManager(basicDataSource);
-        List<Vehicle> allVehicles = dealershipDataManager.getAllVehicles();
-        System.out.println(allVehicles);
+//        List<Vehicle> allVehicles = dealershipDataManager.getAllVehicles();
+//        System.out.println(allVehicles);
+        Vehicle vehicle = new Vehicle(1002,2040,"ford","raptor", Vehicle.VehicleType.truck,"blue",000112,60000 );
+        dealershipDataManager.updateVehicles(vehicle);
+
+        System.out.println(vehicle);
 
     }
 }
