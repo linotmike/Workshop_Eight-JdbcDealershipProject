@@ -113,10 +113,10 @@ public class DealershipDataManager {
                 Connection connection = this.dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-                ) {
-            preparedStatement.setInt(1,vin);
+        ) {
+            preparedStatement.setInt(1, vin);
             int rowsDeleted = preparedStatement.executeUpdate();
-            if (rowsDeleted > 0){
+            if (rowsDeleted > 0) {
                 System.out.println("Vehicle with VIN " + vin + " deleted successfully. Rows affected: " + rowsDeleted);
             } else {
                 System.out.println("No vehicles deleted");
@@ -126,4 +126,33 @@ public class DealershipDataManager {
         }
     }
 
+
+    public List<Vehicle> searchVehicle(String query, Object... params) {
+        List<Vehicle> vehicles = new ArrayList<>();
+        try (
+                Connection connection = this.dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        ) {
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 1, params[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    vehicles.add(new Vehicle(resultSet.getInt("vin"),
+                            resultSet.getInt("year"),
+                            resultSet.getString("make"),
+                            resultSet.getString("model"),
+                            Vehicle.VehicleType.valueOf(resultSet.getString("vehicle_type").toLowerCase()),
+                            resultSet.getString("color"),
+                            resultSet.getInt("odometer"),
+                            resultSet.getInt("price"))
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vehicles;
+    }
 }
