@@ -126,11 +126,16 @@ public class DealershipDataManager {
         }
     }
 
-
     public List<Vehicle> searchByPriceRange(float minPrice, float maxPrice) {
         String query = "SELECT * FROM vehicles WHERE price BETWEEN ? AND ?";
-        return searchVehicle(query,minPrice,maxPrice);
+        return searchVehicle(query, minPrice, maxPrice);
     }
+
+    public List<Vehicle> searchByMakeAndModel(String make , String model){
+        String query = "SELECT * FROM vehicles WHERE make = ? AND model = ?";
+        return searchVehicle(query,make,model);
+    }
+
 
     public List<Vehicle> searchVehicle(String query, Object... params) {
         List<Vehicle> vehicles = new ArrayList<>();
