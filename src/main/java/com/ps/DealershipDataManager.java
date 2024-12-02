@@ -141,6 +141,11 @@ public class DealershipDataManager {
         return searchVehicle(query,startYear,endYear);
     }
 
+    public List<Vehicle> searchByColor (String color){
+        String query = "SELECT * FROM vehicles WHERE color = ?";
+        return searchVehicle(query,color);
+    }
+
     public List<Vehicle> searchVehicle(String query, Object... params) {
         List<Vehicle> vehicles = new ArrayList<>();
         try (
