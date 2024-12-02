@@ -146,6 +146,10 @@ public class DealershipDataManager {
         return searchVehicle(query,color);
     }
 
+    public List<Vehicle> searchByMileage(int minMileage, int maxMileage) {
+        String query = "SELECT * FROM vehicles WHERE price BETWEEN ? AND ?";
+        return searchVehicle(query, minMileage,maxMileage);
+    }
     public List<Vehicle> searchVehicle(String query, Object... params) {
         List<Vehicle> vehicles = new ArrayList<>();
         try (
