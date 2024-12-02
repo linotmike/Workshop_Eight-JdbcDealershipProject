@@ -136,6 +136,10 @@ public class DealershipDataManager {
         return searchVehicle(query,make,model);
     }
 
+    public List<Vehicle> searchByYearRange(int startYear, int endYear) {
+        String query = "SELECT * FROM vehicles WHERE year BETWEEN ? AND ?";
+        return searchVehicle(query,startYear,endYear);
+    }
 
     public List<Vehicle> searchVehicle(String query, Object... params) {
         List<Vehicle> vehicles = new ArrayList<>();
